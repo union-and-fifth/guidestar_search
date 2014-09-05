@@ -1,9 +1,9 @@
 require 'httparty'
 
-require 'guidestar_search/version'
-require 'guidestar_search/configuration'
-require 'guidestar_search/query'
-require 'guidestar_search/organization'
+require_relative './guidestar_search/version'
+require_relative './guidestar_search/configuration'
+require_relative './guidestar_search/query'
+require_relative './guidestar_search/organization'
 
 module GuidestarSearch
   class << self
