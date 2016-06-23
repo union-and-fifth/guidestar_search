@@ -1,6 +1,6 @@
 # GuidestarSearch
 
-A simple wrapper for the https://data.guidestar.org/ API. Still pretty WIP at the moment, no real error handling or result paging yet. We'll get there.
+A simple wrapper for the https://data.guidestar.org/ API.
 
 ## Installation
 
@@ -36,6 +36,18 @@ Pass in accepted `q` params, as defined here: https://data.guidestar.org/#guides
 
 ``` ruby
 GuidestarSearch.query(city: 'Santa Cruz', state: 'CA')
+```
+
+To retrieve a specific page number of the results, pass in the optional extra param `page` like this:
+
+``` ruby
+GuidestarSearch.query(city: 'Santa Cruz', state: 'CA', page: 3)
+```
+
+To retrieve a specific number of results per page, pass in the optional extra param `per_page` like this:
+
+``` ruby
+GuidestarSearch.query(city: 'Santa Cruz', state: 'CA', per_page: 25)
 ```
 
 ## Contributing
