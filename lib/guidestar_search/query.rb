@@ -1,7 +1,7 @@
 module GuidestarSearch
   class Query
     include HTTParty
-    ssl_version :SSLv3
+    ssl_version :TLSv1
 
     attr_reader :parsed_response
     attr_reader :organizations
