@@ -11,6 +11,8 @@ module GuidestarSearch
         GuidestarSearch::Configuration::SANDBOX_ENDPOINT :
         GuidestarSearch::Configuration::ENDPOINT
 
+      (page,per_page,search_options) = get_paging_options(search_options)
+
       @options = {
         basic_auth: {
           username: GuidestarSearch.configuration.username,
@@ -21,6 +23,12 @@ module GuidestarSearch
           q: search_options.map {|k, v| "#{k}:#{v}"}.join(' AND ')
         }
       }
+      if page
+        @options[:query][:p] = page
+      end
+      if per_page
+        @options[:query][:r] = per_page
+      end
     end
 
     def execute
@@ -34,6 +42,22 @@ module GuidestarSearch
       else
         []
       end
+    end
+
+    def get_paging_options(search_options)
+      page = nil
+      per_page = nil
+
+      if search_options[:page].present?
+        page = search_options[:page].to_i
+        search_options.delete(:page)
+      end
+      if search_options[:per_page].present?
+        per_page = search_options[:per_page].to_i
+        search_options.delete(:per_page)
+      end
+
+      [page,per_page,search_options]
     end
 
     def method_missing(name, *args, &block)
