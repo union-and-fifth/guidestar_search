@@ -5,6 +5,7 @@ module GuidestarSearch
 
     attr_reader :parsed_response
     attr_reader :organizations
+    attr_reader :total_num_organizations
 
     def initialize(search_options)
       self.class.base_uri GuidestarSearch.configuration.sandbox? ?
@@ -34,6 +35,12 @@ module GuidestarSearch
     def execute
       @response = self.class.get('/search.json', @options)
       @parsed_response = @response.parsed_response
+
+      @total_num_organizations = if @parsed_response['total_hits']
+        @parsed_response['total_hits'].to_i
+      else
+        0
+      end
 
       @organizations = if @parsed_response['hits']
         @parsed_response['hits'].map do |hit|
