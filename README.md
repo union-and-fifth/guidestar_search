@@ -50,6 +50,26 @@ To retrieve a specific number of results per page, pass in the optional extra pa
 GuidestarSearch.query(city: 'Santa Cruz', state: 'CA', per_page: 25)
 ```
 
+The query method above returns a query object, with two methods on it:
+
+``` ruby
+organizations
+total_num_organizations
+```
+
+total_num_organizations contains the total number of results across all pages.  organizations returns a list of simple result objects, on which you can call methods named the same as the field names from the GuideStar Search API.  Some common field names are:
+
+``` ruby
+organization_id
+ein
+organization_name
+mission
+city
+state
+zip
+website
+```
+
 ## Contributing
 
 1. Fork it
