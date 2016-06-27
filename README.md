@@ -78,7 +78,14 @@ Pass a GuideStar organization id into the detail method to get details on that o
 GuidestarSearch.detail(8867641)
 ```
 
-The detail method above returns a simple result object, on which you can call methods named the same as the field names from the GuideStar Detail API.  Some common field names are:
+The detail method above returns a detail object, with one method on it:
+
+
+``` ruby
+organization
+```
+
+The organization method returns a simple result object, on which you can call methods named the same as the field names from the GuideStar Detail API.  Some common field names are:
 
 ``` ruby
 organization_id
@@ -96,6 +103,8 @@ mission
 year_founded
 website
 ```
+
+If GuideStar cannot find the organization associated with the GuideStar organization id passed in, then the organization method returns an empty hash.
 
 ## Contributing
 
