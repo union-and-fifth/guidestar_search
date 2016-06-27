@@ -17,14 +17,14 @@ module GuidestarSearch
           password: GuidestarSearch.configuration.password
         }
       }
-      @organization_id = organization_id
+      @organization_id = organization_id.to_i
     end
 
     def execute
-      @response = self.class.get('/' + @organization_id, @options)
+      @response = self.class.get('/' + @organization_id.to_s, @options)
       @parsed_response = @response.parsed_response
 
-      @organization = if @parsed_response.present?
+      @organization = if @parsed_response['ein']
         Organization.new(@parsed_response)
       else
         {}
