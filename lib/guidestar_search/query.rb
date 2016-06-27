@@ -9,8 +9,8 @@ module GuidestarSearch
 
     def initialize(search_options)
       self.class.base_uri GuidestarSearch.configuration.sandbox? ?
-        GuidestarSearch::Configuration::SANDBOX_ENDPOINT :
-        GuidestarSearch::Configuration::ENDPOINT
+        GuidestarSearch::Configuration::SEARCH_SANDBOX_ENDPOINT :
+        GuidestarSearch::Configuration::SEARCH_ENDPOINT
 
       (page,per_page,search_options) = get_paging_options(search_options)
 
