@@ -30,9 +30,9 @@ GuidestarSearch.configure do |config|
 end
 ```
 
-### Query
+### Search
 
-Pass in accepted `q` params, as defined here: https://data.guidestar.org/#guidestar_search
+Pass accepted `q` params into the query method, as defined here: https://data.guidestar.org/#guidestar_search
 
 ``` ruby
 GuidestarSearch.query(city: 'Santa Cruz', state: 'CA')
@@ -63,10 +63,37 @@ total_num_organizations contains the total number of results across all pages.  
 organization_id
 ein
 organization_name
-mission
 city
 state
 zip
+mission
+website
+```
+
+### Detail
+
+Pass a GuideStar organization id into the detail method to get details on that organization.
+
+``` ruby
+GuidestarSearch.detail(8867641)
+```
+
+The detail method above returns a simple result object, on which you can call methods named the same as the field names from the GuideStar Detail API.  Some common field names are:
+
+``` ruby
+organization_id
+ein
+organization_name
+address_line1
+address_line2
+city
+state
+zip
+zip4
+contact_phone
+contact_fax
+mission
+year_founded
 website
 ```
 
