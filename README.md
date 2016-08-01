@@ -78,7 +78,6 @@ city
 state
 zip
 mission
-website
 ```
 
 ### Detail
