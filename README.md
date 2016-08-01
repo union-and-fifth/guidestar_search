@@ -20,23 +20,11 @@ Or install it yourself as:
 
 ### Configure
 
-Pretty straightforward. You can perform authentication with either your GuideStar API key or your GuideStar username/password.  If you're testing, you can set `sandbox` to true to hit the sandbox endpoint.
-
-Authentication with API key:
+Pretty straightforward - just configure with a GuideStar API key (typically in a Rails initializer).  If you're testing, you can set `sandbox` to true to hit the sandbox endpoint.
 
 ``` ruby
 GuidestarSearch.configure do |config|
   config.api_key = 'yourGuideStarAPIKey'
-  config.sandbox = true
-end
-```
-
-Authentication with username/password:
-
-``` ruby
-GuidestarSearch.configure do |config|
-  config.username = 'your.guidestar@account.com'
-  config.password = 'yourGuideStarPassword'
   config.sandbox = true
 end
 ```
@@ -78,6 +66,7 @@ city
 state
 zip
 mission
+website
 ```
 
 ### Detail

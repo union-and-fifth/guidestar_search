@@ -13,7 +13,10 @@ module GuidestarSearch
       (page,per_page,search_options) = get_paging_options(search_options)
 
       @options = {
-        basic_auth: get_auth_options,
+        basic_auth: {
+          username: GuidestarSearch.configuration.api_key,
+          password: ''
+        },
         query: {
           # Convert the search_options hash into lucene query format
           q: search_options.map {|k, v| "#{k}:#{v}"}.join(' AND ')
@@ -51,20 +54,6 @@ module GuidestarSearch
         GuidestarSearch::Configuration::SEARCH_SANDBOX_ENDPOINT
       else
         GuidestarSearch::Configuration::SEARCH_ENDPOINT
-      end
-    end
-
-    def get_auth_options
-      if GuidestarSearch.configuration.api_key.present?
-        {
-          username: GuidestarSearch.configuration.api_key,
-          password: ''
-        }
-      else
-        {
-          username: GuidestarSearch.configuration.username,
-          password: GuidestarSearch.configuration.password
-        }
       end
     end
 
