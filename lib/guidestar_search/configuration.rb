@@ -7,6 +7,7 @@ module GuidestarSearch
     DETAIL_ENDPOINT = 'https://data.guidestar.org/v1/detail'
     DETAIL_SANDBOX_ENDPOINT = 'https://sandboxdata.guidestar.org/v1/detail'
 
+    attr_accessor :api_key
     attr_accessor :username
     attr_accessor :password
     attr_accessor :sandbox

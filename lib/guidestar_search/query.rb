@@ -8,19 +8,14 @@ module GuidestarSearch
     attr_reader :total_num_organizations
 
     def initialize(search_options)
-      self.class.base_uri GuidestarSearch.configuration.sandbox? ?
-        GuidestarSearch::Configuration::SEARCH_SANDBOX_ENDPOINT :
-        GuidestarSearch::Configuration::SEARCH_ENDPOINT
+      self.class.base_uri get_base_uri
 
       (page,per_page,search_options) = get_paging_options(search_options)
 
       @options = {
-        basic_auth: {
-          username: GuidestarSearch.configuration.username,
-          password: GuidestarSearch.configuration.password
-        },
+        basic_auth: get_auth_options,
         query: {
-          # convert the search_options hash into lucene query format
+          # Convert the search_options hash into lucene query format
           q: search_options.map {|k, v| "#{k}:#{v}"}.join(' AND ')
         }
       }
@@ -48,6 +43,28 @@ module GuidestarSearch
         end
       else
         []
+      end
+    end
+
+    def get_base_uri
+      if GuidestarSearch.configuration.sandbox?
+        GuidestarSearch::Configuration::SEARCH_SANDBOX_ENDPOINT
+      else
+        GuidestarSearch::Configuration::SEARCH_ENDPOINT
+      end
+    end
+
+    def get_auth_options
+      if GuidestarSearch.configuration.api_key.present?
+        {
+          username: GuidestarSearch.configuration.api_key,
+          password: ''
+        }
+      else
+        {
+          username: GuidestarSearch.configuration.username,
+          password: GuidestarSearch.configuration.password
+        }
       end
     end
 
