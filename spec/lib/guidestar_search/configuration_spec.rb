@@ -2,11 +2,10 @@ require_relative '../../spec_helper'
 
 describe GuidestarSearch::Configuration do
   describe 'defaults and constants' do
-    it 'has the correct default values for username, password, and sandbox' do
+    it 'has the correct default values for api key and sandbox' do
       config = GuidestarSearch::Configuration.new
 
-      config.username.must_equal nil
-      config.password.must_equal nil
+      config.api_key.must_equal nil
       config.sandbox.must_equal false
     end
 

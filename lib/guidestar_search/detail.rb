@@ -7,14 +7,12 @@ module GuidestarSearch
     attr_reader :organization
 
     def initialize(organization_id)
-      self.class.base_uri GuidestarSearch.configuration.sandbox? ?
-        GuidestarSearch::Configuration::DETAIL_SANDBOX_ENDPOINT :
-        GuidestarSearch::Configuration::DETAIL_ENDPOINT
+      self.class.base_uri get_base_uri
 
       @options = {
         basic_auth: {
-          username: GuidestarSearch.configuration.username,
-          password: GuidestarSearch.configuration.password
+          username: GuidestarSearch.configuration.api_key,
+          password: ''
         }
       }
       @organization_id = organization_id.to_i
@@ -28,6 +26,14 @@ module GuidestarSearch
         Organization.new(@parsed_response)
       else
         {}
+      end
+    end
+
+    def get_base_uri
+      if GuidestarSearch.configuration.sandbox?
+        GuidestarSearch::Configuration::DETAIL_SANDBOX_ENDPOINT
+      else
+        GuidestarSearch::Configuration::DETAIL_ENDPOINT
       end
     end
 

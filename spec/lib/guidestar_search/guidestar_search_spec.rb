@@ -6,20 +6,12 @@ describe GuidestarSearch do
       GuidestarSearch.reset_configuration
     end
 
-    it 'allows users to set the API username' do
+    it 'allows users to set the API key' do
       GuidestarSearch.configure do |config|
-        config.username = 'afake@email.com'
+        config.api_key = 'notARealAPIKey'
       end
 
-      GuidestarSearch.configuration.username.must_equal 'afake@email.com'
-    end
-
-    it 'allows users to set the API password' do
-      GuidestarSearch.configure do |config|
-        config.password = 'notARealPassword'
-      end
-
-      GuidestarSearch.configuration.password.must_equal 'notARealPassword'
+      GuidestarSearch.configuration.api_key.must_equal 'notARealAPIKey'
     end
 
     it 'allows users to set the API sandbox mode' do

@@ -20,12 +20,11 @@ Or install it yourself as:
 
 ### Configure
 
-Pretty straightforward. If you're testing, you can set `sandbox` to true to hit the sandbox endpoint.
+Pretty straightforward - just configure with a GuideStar API key (typically in a Rails initializer).  If you're testing, you can set `sandbox` to true to hit the sandbox endpoint.
 
 ``` ruby
 GuidestarSearch.configure do |config|
-  config.username = 'your.guidestar@account.com'
-  config.password = 'yourGuidestarPassword'
+  config.api_key = 'yourGuideStarAPIKey'
   config.sandbox = true
 end
 ```
