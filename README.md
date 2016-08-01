@@ -26,7 +26,7 @@ Authentication with API key:
 
 ``` ruby
 GuidestarSearch.configure do |config|
-  config.api_key = yourGuideStarAPIKey'
+  config.api_key = 'yourGuideStarAPIKey'
   config.sandbox = true
 end
 ```
